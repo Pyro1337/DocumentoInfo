@@ -1,10 +1,11 @@
 ﻿using InformacionDocumento;
-string rutaCarpeta = @"C:\carpetaPrueba"; //directorio de prueba
+string rutaCarpeta = @"C:\" + Guid.NewGuid().ToString(); //directorio de prueba
 InfoDocument infodoc = new InfoDocument(rutaCarpeta);
-string rutaPrueba = @"C:\rutaPruebaPaginas\redes.pdf";
+string rutaPrueba = @"C:\rutaPruebaPaginas\Instalación local del Zcriptum.docx";
 byte[] bytes = File.ReadAllBytes(rutaPrueba);
-string extension = "pdf";
-int resultado = infodoc.obtenerCantPaginas(bytes,extension);
-double tamanio = infodoc.obtenerTamanioArchivo(bytes,extension);
-Console.WriteLine("la cantidad de paginas es : "+resultado);
-Console.WriteLine("el tamanio del archivo es: "+tamanio);
+string extension = "docx";
+string pathSofficeExe = @"C:\Program Files\LibreOffice\program\soffice.exe";
+int? resultado = infodoc.obtenerCantPaginas(bytes, extension, pathSofficeExe);
+double tamanio = infodoc.obtenerTamanioArchivo(bytes, extension);
+Console.WriteLine("la cantidad de paginas es : " + resultado ?? "-1");
+Console.WriteLine("el tamanio del archivo es: " + tamanio);
